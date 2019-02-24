@@ -9,7 +9,15 @@
 
 
 int my_compare_strings(char string1[], char string2[]) {
+  int j = strlen(string1);
+  if (j < strlen(string2)) j = strlen(string2);
 
+  for (int i = 0; i < j; i++) {
+    if (string1[i] < string2[i]) return -1;
+    if (string1[i] > string2[i]) return 1;
+  }
+
+  return 0;
   /* Write code here to compare string1 and string2, character by character.
      WITHOUT USING ANY C STRING LIBRARY FUNCTIONS.
 
@@ -31,6 +39,15 @@ int my_compare_strings(char string1[], char string2[]) {
 void my_swap_strings(char string1[], char string2[]) {
   char temp;    // char variable used in swapping one character at a time
 
+  int j = strlen(string1);
+  if (j < strlen(string2)) j = strlen(string2);
+
+  for (int i = 0; i < j + 1; i++) {
+    temp = string1[i];
+    string1[i] = string2[i];
+    string2[i] = temp;
+  }
+
   /* Write code here to swap the contents of string1 and string2, one
      character at a time, WITHOUT USING ANY C STRING LIBRARY FUNCTIONS. 
 
@@ -46,6 +63,9 @@ int main()
 
   printf("Please enter %d strings, one per line:\n", NUM);
 
+  for (int i = 0; i < NUM; i++) {
+    fgets(Strings[i], LEN, stdin);
+  }
   /* Write a for loop here to read NUM strings.
 
      Use fgets(), with LEN as an argument to ensure that an input line that is too
@@ -56,7 +76,9 @@ int main()
   puts("\nHere are the strings in the order you entered:");
 
   /* Write a for loop here to print all the strings. */
-
+  for (int i = 0; i < NUM; i++) {
+    printf("%s", Strings[i]);
+  }
   
   /* Bubble sort */
   /* Write code here to bubble sort the strings in ascending alphabetical order
@@ -66,7 +88,13 @@ int main()
 
   */
 
-  
+  for (int i = 0; i < NUM; i++) {
+    for (int j = 0; j < NUM - i - 1; j++) {
+      if (my_compare_strings(Strings[j], Strings[j + 1]) == 1) {
+        my_swap_strings(Strings[j], Strings[j + 1]);
+      }
+    }
+  }
   
   /* Output sorted list */
   
@@ -74,5 +102,8 @@ int main()
   /* Write a for loop here to print all the strings. Feel free to use puts/printf
      etc. for printing each string.
   */
+  for (int i = 0; i < NUM; i++) {
+    printf("%s", Strings[i]);
+  }
 
 }
