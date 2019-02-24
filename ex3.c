@@ -14,7 +14,7 @@ int main() {
   int n = 1;
   int k = 1;
   while (1) {
-    puts("Enter two integers (for n and k) separated by a space:");
+    puts("Enter two integers (for n and k) separated by space:");
     scanf("%d %d", &n, &k);
     printf("%d\n", NchooseK(n, k));
     if (n == 0 && k == 0) {
